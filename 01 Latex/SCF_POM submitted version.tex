@@ -1,0 +1,622 @@
+\documentclass[A4,11pt]{article}
+
+
+\usepackage{url,graphicx,array,authblk}
+\usepackage[usenames,dvipsnames]{color}
+
+\usepackage{graphicx,setspace}
+\usepackage[margin=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{multirow}
+\usepackage{natbib}
+\usepackage{amsmath,amssymb,mathtools,amsthm}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\usepackage[title]{appendix}
+\newcommand{\HRule}{\rule{\linewidth}{0.35mm}}
+
+\makeatletter
+
+\makeatother
+\usepackage{breqn}
+
+\usepackage{subcaption}
+\newcommand{\bx}{\mathcal B}
+\newcommand{\sx}{\mathcal S}
+\newcommand{\MSHAT}{m^\sx}
+\newcommand{\MBHAT}{m^{\bx}}
+\newcommand{\MBX}{\frac{m^\bx}{1-m^\bx}}
+\newcommand{\DNULL}{\frac{\alpha m^{\sx}i^{\bx}-\left(1-\alpha\right)\frac{m^{\bx}}{1-m^{\bx}}i^{\sx}}{i^{\bx}i^{\sx}}}
+\newcommand{\DSCF}{\frac{\alpha i^{\sx}+\left(1-\alpha\right)i^{RF}}{i^{RF}}d^{0^*}}
+
+\newcommand{\BA}{\alpha}
+\newcommand{\SA}{{1-\alpha}}
+
+\newcommand{\mm}{\mu}
+\newcommand{\vv}{\nu}
+\newcommand{\ISS}{i^{\sx,0}}
+\newcommand{\ISR}{i^{\sx,0}+r}
+\newcommand{\IBR}{i^{\bx,0}+r}
+\newcommand{\IS}{i^{\sx}}
+\newcommand{\IB}{i^{\bx}}
+\newcommand{\ISCFR}{i^{RF,0}+r}
+\newcommand{\ISRP}{\left(\ISR\right)}
+\newcommand{\IBRP}{\left(\IBR\right)}
+\newcommand{\ISCFRP}{\left(\ISCFR\right)}
+\newcommand{\cites}[1]{\citeauthor{#1}'s (\citeyear{#1})}
+
+%\DeclareMathOperator*{\argmax}{arg\,max}
+%\DeclareMathOperator*{\argmin}{arg\,min}
+
+\usepackage{placeins}
+
+\usepackage{listings}
+\usepackage{float,mdwlist,enumitem}
+\usepackage{footmisc}
+
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}} 
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}} 
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}} 
+\newlength\interColSepSmall
+\newlength\interColSepLarge
+\setlength{\interColSepSmall}{0.2em}
+\setlength{\interColSepLarge}{0.4em}
+
+\usepackage{etex}
+
+\newcommand{\PValue}[1]{($p<#1$)}
+\newcommand{\Ex}{\mathbb{E}}
+\renewcommand{\~}[1]{\tilde{#1}}
+\renewcommand{\-}[1]{\overline{#1}}
+\newcommand{\D}[0]{\ensuremath{\mathrm{d}}}
+\newcommand{\pDefSig}[0]{${}^{+} p< 0.10$,${}^{*} p <0.05$,${}^{**} p <0.01$,${}^{***} p <0.001$}
+%\newcommand{\pDefSig}[0]{${}^{*}\mathrm p <0.05$,${}^{**}\mathrm p <0.01$,${}^{***}\mathrm p <0.001$}
+\newcommand{\pDefSigCor}[0]{${}^{*} p <0.05$}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\usepackage{array}
+\usepackage{makecell}
+
+\renewcommand\theadalign{cb}
+\renewcommand\theadfont{\bfseries}
+\renewcommand\theadgape{\Gape[4pt]}
+\renewcommand\cellgape{\Gape[4pt]}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.4em}
+
+\usepackage[colorlinks = true,
+            linkcolor =black,
+            urlcolor  = black,
+            citecolor = black,
+            anchorcolor = black]{hyperref}
+
+
+\usepackage{siunitx}
+\usepackage{dcolumn}
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+\newcommand{\muc}[2]{\multicolumn{1}{C{#1}}{#2}}
+\newcommand{\suc}[1]{\multicolumn{1}{c}{#1}}
+
+\newtheorem{hypothesis}{Hypothesis}
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+
+%\usepackage{booktabs}
+\usepackage{siunitx}
+\newcolumntype{d}{S[input-symbols = ()]}
+
+% Natbib setup for author-year style
+\usepackage{natbib}
+ \bibpunct[, ]{(}{)}{,}{a}{}{,}%
+ \def\bibfont{\small}%
+ \def\bibsep{\smallskipamount}%
+ \def\bibhang{24pt}%
+ \def\newblock{\ }%
+ \def\BIBand{and}%
+
+  \usepackage{titlesec}
+%\newcommand{\subsubsubsection}[1]{\paragraph{#1}$\;$\vspace{-2pt}\\}
+\newcommand{\subsubsubsection}[1]{\paragraph{#1}$\;$\vspace{-2pt}\\}
+\titleformat{\subsubsubsection}
+{\normalfont\normalsize\bfseries}{\thesubsubsubsection}{-1em}{}
+\titlespacing*{\subsubsubsection}
+{0pt}{-3ex plus -1ex minus 1.2ex}{-3.5ex plus .02ex}
+
+\newcommand{\Hypo}[2]{\begin{hypothesis}\label{hypo:#1}#2\end{hypothesis}}
+\newcommand{\killSpace}{$\;$\vspace{-36pt}\\}
+\setlength{\abovecaptionskip}{-1pt}
+\setlength{\belowcaptionskip}{-7pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\titlespacing*{\section}
+{0pt}{0.0ex plus 0ex minus .8ex}{-1.0ex plus .01ex}
+\titlespacing*{\subsection}
+{0pt}{0.0ex plus 0ex minus .8ex}{-1.0ex plus .01ex}
+\titlespacing*{\subsubsection}
+{0pt}{0.0ex plus 0ex minus .8ex}{0.1ex plus .1ex}
+
+
+\title{Empirical Evidence about Payment Term Extensions\\ in the Reverse Factoring Context}
+\date{}
+\author{(blinded for peer-review)\vspace{-24pt}}
+%\author[1]{David Wuttke}
+%\affil[1]{Technische Universit\"at M\"unchen, TUM School of Management, TUM Campus Heilbronn, Bildungscampus 9, 74076 Heilbronn, Germany, david.wuttke@tum.de}
+
+
+%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%
+\maketitle%
+
+\vspace{6pt}
+%\AFF{} %, \URL{}}
+%k
+\noindent%
+\textbf{Abstract:} Reverse factoring (RF) is a highly relevant form of supply chain finance. Extant analytical studies indicate that RF should enable buyers to extend payment terms with existing suppliers, and those studies predict determinants of payment term extensions. However, sufficient empirical evidence is lacking. The current research identifies gaps between theory and practice and provides research opportunities. Our main finding contradicts a central prediction of most analytical studies; we find that payment terms are more extended if they are short. This contradiction calls for a more nuanced modeling perspective of payment term extensions under RF. Managers should be prudent in applying simple formulas to estimate benefits inherent to reverse factoring; they are only partially consistent with industry practice. Harmonization of payment terms (i.e., reducing heterogeneity among suppliers) is important, though absent from extant analytical models.\vspace{3pt}
+%
+
+% Sample
+%\KEYWORDS{deterministic inventory theory; infinite linear programming duality;
+%  existence of optimal policies; semi-Markov decision process; cyclic schedule}
+\noindent%
+\textbf{Keywords:} reverse factoring; supply chain finance; econometrics; hypotheses testing
+
+%\HISTORY{}
+\doublespacing
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Samples of sectioning (and labeling) in MNSC
+% NOTE: (1) \section and \subsection do NOT end with a period
+%       (2) \subsubsection and lower need end punctuation
+%       (3) capitalization is as shown (title style).
+%
+%\section{Introduction.}\label{intro} %%1.
+%\subsection{Duality and the Classical EOQ Problem.}\label{class-EOQ} %% 1.1.
+%\subsection{Outline.}\label{outline1} %% 1.2.
+%\subsubsection{Cyclic Schedules for the General Deterministic SMDP.}
+%  \label{cyclic-schedules} %% 1.2.1
+%\section{Problem Description.}\label{problemdescription} %% 2.
+
+\section{Introduction}
+Regardless of historically low interest rates, even buying firms with solid credit ratings turn to their supply chain to reduce their financing costs and improve their working capital \citep{Filbeck2016}. They pay their suppliers according to long payment terms \citep{Hu2018}, such as when Boeing increased its payment terms to 120 days, as opposed to 30 days \citep{Scott2016}, and Anheuser Busch InBev strived for payment terms of 120 days \citep{Daneshkhu2015}. Procter \& Gamble demanded its suppliers to wait 75 days until getting paid, resulting in increases of about \$1 billion in its cash flows \citep{Strom2015}. Suppliers in weaker bargaining positions often feel more compelled to accept the longest payment terms, whereas more powerful suppliers get paid faster \citep{Fabbri2016}. However, putting financial pressure on weaker suppliers increases their economic risk \citep{Boissay2007}.
+
+To extend payment terms with all suppliers without jeopardizing the liquidity of the upstream supply chain, many large buying firms have adopted reverse factoring (RF) \citep{Herath2015,vanderVliet2015, Wuttke2019}. With a potential market volume of \$20 billion \citep{Herath2015} and a quickly growing number of significant firms using RF (e.g., Walmart\footnote{https://www.blendedfinance.earth/supply-chain-innovations/2020/11/16/walmarts-supply-chain-financing-programme}, Siemens\footnote{https://new.siemens.com/global/en/company/about/corporate-functions/supply-chain-management/collaborating-with-siemens/supply-chain-finance.html}, and Michelin\footnote{https://primerevenue.com/resources/news/michelin-recognized-for-highly-effective-supply-chain-finance-implementation/}), RF is among the most important supply chain finance arrangements. RF always involves a buying firm, a supplier, and an RF provider (which may be a bank). After the buying firm's invoice approval, suppliers in the RF program get immediately paid by a third party, the so-called RF provider. The suppliers receive the total invoice amount minus an RF interest charge. This charge depends on the payment term (the longer the payment term, the higher the cost), as well as on the buying firm's typically strong credit rating, such that it tends to be substantially cheaper for the suppliers compared to other sources of financing (otherwise, they typically would not use RF). After the payment term, the buying firm pays the RF provider the total invoice amount.
+
+There is ample analytical research that examines the mechanism and logic underlying RF \citep{Hu2018, Kouvelis2020, Lekkakos2016, Tanrisever2012,vanderVliet2015, Wuttke2016}. Central to those studies is that buyers adopt RF, seeking to expand payment terms. The more they can expand payment terms, the more significant their benefits are. Following the normative paradigm, those analytical studies ask how much buyers can extend payment terms and when those extensions are the longest. This insight is very relevant for supply chain managers of buying firms, who need to estimate the potential benefits inherent to RF adoption and craft an optimal payment term strategy. 
+
+Our study contributes to theory by complementing those analytical approaches with field evidence. First, it shows that substantial payment term extensions are possible, but a central prediction of all normative RF studies does not apply in our sample. These models predict that payment terms that are already long will be extended even more than those that are short. This prediction is intuitive as suppliers on longer initial payment terms benefit most and should thus accept even longer payment term extensions. We find the opposite effect. Several essential endogeneity checks rule out alternative explanations for this contradiction, so this finding has important implications for our theoretical understanding of RF and management decisions in this context. Second, our findings change the perspective that we should take on RF. Parsing the results of our study carefully, managers of buying firms seem not to adopt RF to maximize their payment terms according to strategies implied by analytical models. Instead, they remove their suppliers' differences in initial payment terms, creating more equality and homogeneity. This effect suggests a hitherto understudied motive that our study identifies: harmonization of payment terms. This concept offers rich research opportunities for both analytical and empirical researchers. Analytical studies could assess the value of harmonized payment terms by considering the entire supplier base instead of isolated buyer-supplier pairs. Empirical research could explore various drivers of harmonization, such as potential fairness concerns or competition effects. On a broader level, our findings suggest that payment term extensions in reverse factoring can likely be only explained by deviating from the buyer-supplier view in favor of a network perspective. That relates to former studies showing that buying firms care not only about their relationships with their suppliers but also about the supplier-supplier relationships \citep{Wu2005, wu2010, Wilhelm2011}. Third, supply chain management optimizes physical, information, and financial flows \citep{Mentzer2001}. The financial flow is receiving increasing attention in supply chain management related studies such as when \citet{Serrano2018} studies the risk propagation along supply chains due to payment variability, \citet{Brusset2018} studies financial hedges within supply chains against specific risks, or when \citet{Wuttke2019} study the adoption of supply chain finance. Like those studies, ours shows that cash flows in supply chains should not only be seen from a focal firm's perspective but require a deeper understanding of the supply chain. Fourth, our study contributes to operations management literature on a methodological level. Whereas many studies test game-theoretical predictions through experiments \citep{Katok2009, Croson2013, donohue2016}, we add to a relatively limited set of studies that test game-theoretical predictions with secondary data \citep{Sluis2016, Tunca2017}, responding to the call for more intertwinement among research methods \citep{Singhal2012}.
+
+
+
+\section{Related literature and hypotheses}\label{sec:literature}
+The idea of this paper is to test predictions of game theoretical models. Therefore, we review and build on game theoretical studies rather than deriving hypotheses from grand theories. 
+
+The finance and operations interface is receiving increasing attention \citep{Babich2004,Kouvelis2012,Zhao2015,Serrano2018}, particularly in the context of supply chain finance. Many studies indicate that cash flow optimization and liquidity management are important objectives complementing profit maximization \citep{Boissay2013, Hofmann2010, Filbeck2016}. With steady, substantial growth rates, RF  is one of the most relevant approaches to supply chain finance \citep{Herath2015} and directly targets the improvement of cash flows and financing along supply chains. By enabling faster cash flows, it can help financially constrained suppliers to produce more efficient quantities \citep{Kouvelis2020, Grueter2017}. Even though suppliers get paid immediately, buyers pay the loan principal after payment terms to their RF providers. For them, extending payment terms likewise corresponds to a positive cash effect. Central to understanding the impact of reverse factoring is thus its impact on cash flows in supply chains.
+
+There are several empirical, operations-management related studies on reverse factoring. \citet{Liebl2016} and \citet{Wuttke2013} both derive insights using case studies. \citet{Liebl2016} explore the objectives of, antecedents to, and barriers to RF adoption. They find that buyers mainly adopt RF to extend payment terms and reduce supply chain risks. \citet{Wuttke2013} focus on the adoption process from a buying firm's perspective and find that RF adoption requires a series of organizational and procedural adjustments. \citet{Wuttke2019}, studying the adoption of RF by suppliers, derive and test efficiency and legitimacy motives as drivers. They find that suppliers adopt RF faster if they are small, expect big benefits, and face considerable institutional pressures. However, to the best of our knowledge, there are yet no empirical studies that examine how buyers extend payment terms, that is when they extend by more or fewer days. The empirical gap also applies to the important role of former payment terms: Do buying firms extend payment terms more if they are already long? Thus, the objective of our paper is to examine whether substantial extensions are possible and how they relate to initial payment terms. Parameters such as the RF interest rate are less insightful from a theoretical point of view, and hypothesizing on longer extensions in case of lower costs for suppliers is not challenging (though we capture those effects indirectly in our empirical analysis). Initial payment terms, in contrast, are dyadic concepts. Will buyers really demand longer extensions when they are already long as analytical work predicts, or strive to harmonize terms instead and extend payment terms more if they are short? To focus our paper on this most relevant aspect, we restrict our theoretical development to two key hypotheses.
+
+Prior analytical studies typically depart from inventory models \citep{Lekkakos2016,Kouvelis2020,Tanrisever2012,vanderVliet2015}, models of financial flexibility \citep{Grueter2017,Hu2018}, or innovation diffusion models \citep{DelloIacono2015, Wuttke2016} in their effort to identify the RF value proposition. These models depart from the assumption that buyers may expand payment terms to benefit from offering RF to their suppliers. Furthermore, those studies typically characterize the optimal payment term extensions. They note that, in equilibrium, payment term extensions tend to be positive. For instance, \citet{Hu2018} state in their Lemma~8 that RF is only valuable if it allows a buyer to pay later than the contractual agreement without RF. \citet{Lekkakos2016} provide a numerical study indicating substantial potential extensions. The only exception to those findings is \citet{Kouvelis2020}, who build a supply chain theory of factoring and reverse factoring to compare different approaches for financing payment terms. These authors note, with regards to RF, ``the key problem for the [buyer] is whether to offer [RF] for a specific supplier and if to offer it, with what payment extension'' (p. 24). Therefore, they conclude that positive payment term extensions are not always optimal. Nevertheless, since even they find payment term extensions optimal in many settings and qualitative studies have reported this as the key approach for buyers to benefit from introducing RF \citep{Liebl2016, Wuttke2013}, the first hypothesis of our study is,
+
+\begin{hypothesis}\label{H:expand}
+The adoption of reverse factoring is associated with an extension of payment terms.
+\end{hypothesis}
+
+Virtually all related analytical studies suggest that buyers should not extend the payment terms by the same amount to all suppliers but instead consider specific parameters \citep{Grueter2017, Hu2018, Kouvelis2020, Lekkakos2016, Tanrisever2012, vanderVliet2015, Wuttke2016}. Essential in understanding optimal extensions are two properties of RF programs. With RF, all participating suppliers receive their payment virtually immediately after invoice release. Moreover, the new payment terms indicate the duration after which the buyer pays the loan principle. Consequently, longer payment terms do not mean that suppliers have to wait longer to get paid but rather how much they have to spend on the interest fee. \cites{vanderVliet2015} call this effect ``The price of reverse factoring'' (Page 842). 
+
+To assess the possible extension that buyers could obtain, extant analytical studies model baselines which depend on the initial payment terms, that is, before RF. If suppliers get quickly paid before the use of RF (e.g., after ten days), they will benefit little by adopting RF, and they merely get their money a few days faster. If they face long initial payment terms (e.g., 120 days), they could benefit more as the cash flow could be several months faster. Thus, those models predict that long initial payment terms are associated with more benefits for suppliers. Therefore, suppliers with longer initial payment terms should be willing to accept longer extensions even when they lead to higher interest charges. Formally and through various distinct nuances, this observation is expressed in \cites{Kouvelis2020} Proposition 6 (iii), \cites{Tanrisever2012} Proposition~2, \cites{vanderVliet2015} observations in their Section~5.1, and \cites{Wuttke2016} Corollary~1. Consistent with all these findings and intuitive reasoning, we hypothesize,
+
+\begin{hypothesis}\label{H:d0}
+Longer initial payment terms are associated with longer extensions of payment terms under RF. 
+\end{hypothesis}
+
+\section{Data}\label{sec:data}
+Our primary data source is a leading, U.S.-based RF provider, which runs RF programs with large global buyers. Each program contains multiple suppliers, but each supplier is only in one program in this data set. The RF provider does not charge any setup, operating, or consulting fees, but the RF interest rate includes a fee. RF programs have a long-term focus. So far, no active supplier in this sample has left a program, and the earliest dyad has existed for about ten years. Once a supplier joins a program, the program handles all transactions. All suppliers in our data set get paid immediately for their invoices. Some suppliers (excluded from our analysis) use RF to obtain information about invoice approvals, and they decide whether and when to get paid on a case-by-case basis. Such suppliers are likely to pursue goals that are not consistent with extant former models and thus fall outside of our analysis \citep{Grueter2017, Hu2018}.
+
+RF requires buyers to disclose a series of essential variables, such as buyer industry and buyer revenue. About 75\% of suppliers are private firms with no publicly available data, and for RF, they do not need to inform the RF provider with the same level of details. Nevertheless, some supplier-level variables are still available in this data set because each RF program features an RF platform. Buying firms can enter variables such as the supplier industry, supplier country, and supplier revenue. They do not record the supplier's credit spread, however. As we learned from the RF provider, suppliers are unwilling to disclose this information due to their concern that buyers or the provider might use this sensitive information to their disadvantage in the long run. Discussions with leading RF providers indicate that this phenomenon is relatively consistent; their suppliers are unwilling to disclose their credit spreads for similar reasons. Assessing the default risk purely on the buyer's risk profile, the RF provider does not need such information. Few suppliers have a publicly documented credit rating, so the RF provider does not collect information about the supplier's credit spread. In Section~\ref{sec:robust} and Appendix~A, we report comprehensive robustness tests that deal with the unobservability of supplier credit spread and other variables in our sample.
+
+The data refer to a period from 2010 to 2019, with 27 buyers and 1,276 buyer-supplier dyads with complete data. As the data collection ended in December 2019, none of the effects in our study were affected by the COVID-19 pandemic. We used an earlier version of this data set to investigate a different research question with other hypotheses and a different dependent variable (BLINDED FOR REVIEW). In that former study, we investigated the speed at which suppliers adopt reverse factoring. In that study, independent variables explain the time between being offered RF and using it. In contrast, in this present study, payment term extension is the dependent variable. In addition, the former research draws from theory on technology adoption, whereas this present study tests direct predictions of analytical models on RF. The data also differs slightly; besides the longer and more recent time frame of the present study, this study also excludes suppliers that use RF on a case-by-case basis.
+
+We complemented this data set with publicly available data. To measure the risk-free rate, we used the London Interbank Offered Rate (LIBOR), a widely accepted reference rate for the short-term interest rate. We use LIBOR data provided by the Federal Reserve Bank (St. Louis). The RF provider shared anonymous data without firm names for confidentiality reasons, so we could not collect any further firm-level data.
+
+\subsection{Variables}\label{sec:variables}
+Table~\ref{tab:demographics} provides an overview of the demographic variables. \textit{Supplier country} and \textit{supplier industry} are important for our subsequent analysis. To obtain fairly balanced categories, we decided to pool countries with less than ten suppliers into the category `other countries'; this category captures mostly small EU countries such as Belgium, Sweden, and Latvia.
+
+
+
+
+
+\begin{table}[h]
+\caption{Summary Statistics for Categorical Variables}
+\label{tab:demographics}
+{
+\scalebox{1}{%
+\begin{tabular}{%
+lc@{\hspace{.2em}}rc@{\hspace{.2em}}rc@{\hspace{.9em}}lc@{\hspace{.2em}}rc@{\hspace{.2em}}rc
+}\hline\\[-9pt]
+Supplier country && {Count} && {Percentage} && Supplier industry && {Count} && {Percentage} \\[3pt] \cline{1-1}\cline{3-3}\cline{5-5}\\[-10pt] \cline{7-7}\cline{9-9}\cline{11-11}\\[-10pt] 
+ Canada && 24 && 1.88\% && Administrative support && 14 && 1.10\% \\[3pt] 
+ Denmark && 43 && 3.37\% && Basic resources && 101 && 7.92\% \\[3pt] 
+ Germany && 612 && 47.96\% && Chemicals && 30 && 2.35\% \\[3pt] 
+ Mexico && 76 && 5.96\% && Construction and materials && 34 && 2.66\% \\[3pt] 
+ Other && 61 && 4.78\% && Health care && 11 && 0.86\% \\[3pt] 
+ Switzerland && 26 && 2.04\% && Industrial goods and services && 739 && 57.92\% \\[3pt] 
+ United Kingdom && 19 && 1.49\% && Media && 59 && 4.62\% \\[3pt] 
+ United States && 415 && 32.52\% && Not indicated && 176 && 13.79\% \\[3pt] \cline{1-5}\\[-10pt] 
+ \textbf{Total} && 1276 && 100\% && Oil and gas && 29 && 2.27\% \\[3pt] 
+  &&  &&  && Retail && 15 && 1.18\% \\[3pt] 
+ Buyer country && {Count} && {Percentage} && Technology && 68 && 5.33\% \\[3pt] \cline{1-1}\cline{3-3}\cline{5-5}\\[-10pt] \cline{7-11}\\[-10pt] 
+ Canada && 1 && 3.70\% && \textbf{Total} && 1276 && 100\% \\[3pt] 
+ Czech Republic && 1 && 3.70\% &&  &&  &&  \\[3pt] 
+ Denmark && 2 && 7.41\% && Buyer industry && {Count} && {Percentage} \\[3pt] \cline{7-7}\cline{9-9}\cline{11-11}\\[-10pt] 
+ Germany && 9 && 33.33\% && Consumer goods && 1 && 3.70\% \\[3pt] 
+ Mexico && 2 && 7.41\% && Health care && 3 && 11.11\% \\[3pt] 
+ Switzerland && 3 && 11.11\% && Industrial goods and services && 11 && 40.74\% \\[3pt] 
+ United States && 9 && 33.33\% && Oil and gas && 1 && 3.70\% \\[3pt] \cline{1-5}\\[-10pt] 
+ \textbf{Total} && 27 && 100\% && Public administration && 1 && 3.70\% \\[3pt] 
+  &&  &&  && Services && 7 && 25.93\% \\[3pt] 
+ Year && {Count} && {Percentage} && Wholesale and retail && 3 && 11.11\% \\[3pt] \cline{1-1}\cline{3-3}\cline{5-5}\\[-10pt] \cline{7-11}\\[-10pt] 
+ 2010 && 80 && 6.27\% && \textbf{Total} && 27 && 100\% \\[3pt] 
+ 2011 && 116 && 9.09\% &&  &&  &&  \\[3pt] 
+ 2012 && 112 && 8.78\% &&  &&  &&  \\[3pt] 
+ 2013 && 80 && 6.27\% &&  &&  &&  \\[3pt] 
+ 2014 && 79 && 6.19\% &&  &&  &&  \\[3pt] 
+ 2015 && 75 && 5.88\% &&  &&  &&  \\[3pt] 
+ 2016 && 197 && 15.44\% &&  &&  &&  \\[3pt] 
+ 2017 && 164 && 12.85\% &&  &&  &&  \\[3pt] 
+ 2018 && 144 && 11.29\% &&  &&  &&  \\[3pt] 
+ 2019 && 229 && 17.95\% &&  &&  &&  \\[3pt] \cline{1-5}\\[-10pt] 
+ \textbf{Total} && 1276 && 100\% &&  &&  &&  \\[3pt] 
+  &&  &&  &&  &&  &&  \\[3pt]  \\\hline
+\end{tabular}
+}%scalebox
+}
+\end{table}%
+
+\FloatBarrier
+
+In the subsequent analysis, we use the `U.S.' as the baseline category for \textit{supplier country} and `Industrial goods and services' as the baseline category for \textit{supplier industry}. Table~\ref{tab:demographics} also displays \textit{buyer country} and \textit{buyer industry}. These buyer-level demographic variables do not affect our analysis, so creating more balanced groups is unnecessary. The variable \textit{year} captures the time at which a supplier agrees to adopt RF and when the contractual terms apply.
+
+Table~\ref{tab:variableSummary} provides summary statistics for the continuous variables. The variable \textit{payment term extensions} captures the difference between \textit{RF payment terms} and \textit{initial payment terms}. In a few cases, buyers adopt RF even with shorting payment terms (i.e., negative extensions), but the mean is positive with $56.8$ days. The value of \textit{initial payment terms} averages $54.2$ days, \textit{RF payment terms} averages $110.9$ days. \textit{RF interest rate} averages about 1.6\%. Suppliers that use RF incur this rate plus the \textit{Risk-free rate}, which averages 1.1\%. These are annualized values. \textit{Annual spend} captures sales within the buyer-supplier dyad, whereas \textit{supplier revenue} is a supplier's entire revenue so that it may also originate from other buyers. These two variables are right-skewed, so we consider their logarithm in the subsequent analysis. Relative to suppliers, buyers tend to be larger in our data set, as reflected by a higher average \textit{buyer revenue}. Each supplier uses RF in only one program in our data set and cannot gain experience, whereas buyers can build substantial experience, captured in \textit{buyer experience}, a count variable. A value of $n$ indicates that it is a buyer's $n-th$ supplier. Because this count measure is right-skewed, we consider its logarithm.%, except for in Table~\ref{tab:variableSummary}. 
+
+
+
+\begin{table}[htb]\vspace{16pt}
+\caption{Summary Statistics for Continuous Variables. Values reported in this table are not transformed.}
+\label{tab:variableSummary}
+{
+\scalebox{1}{%
+\begin{tabular}{%
+L{2.5in}c@{\hspace{.2em}}*{3}{R{0.55in}c@{\hspace{.2em}}}R{0.57in}c@{\hspace{.2em}}R{0.43in}c@{\hspace{.2em}}
+}
+\hline\\[-9pt]
+Variable Name  &&  Min.  &&  Max.  &&  Mean  &&  Std. dev.  &&  Count\\[3pt]\cline{1-1}\cline{3-3}\cline{5-5}\cline{7-7}\cline{9-9}\cline{11-11}\\[-9pt]
+Payment term extensions (days) && -43.000 && 358.000 && 56.761 && 62.629 && 1276 \\[3pt]
+ Initial payment terms (days) && 2.000 && 180.000 && 54.156 && 30.828 && 1276 \\[3pt]
+ RF payment terms (days) && 2.000 && 360.000 && 110.917 && 55.588 && 1276 \\[3pt]
+ RF interest rate && 0.010 && 0.028 && 0.016 && 0.005 && 1276 \\[3pt]
+ Risk-free rate && 0.002 && 0.028 && 0.011 && 0.009 && 1276 \\[3pt]
+ Annual spend (mn USD) && 0.000 && 237.000 && 2.454 && 8.975 && 1276 \\[3pt]
+ Supplier revenue (bn USD) && 0.000 && 50.469 && 0.166 && 1.698 && 1276 \\[3pt]
+ Buyer revenue (bn USD) && 1.000 && 75.000 && 12.870 && 18.937 && 27 \\[3pt]
+ %Buyer credit spread && 0.006 && 0.012 && 0.009 && 0.002 && 27 \\[3pt]
+ Buyer experience (count) && 1.000 && 277.000 && 75.717 && 73.891 && 1276\\\hline\\[-9pt]
+\end{tabular}
+}%scalebox
+}
+\end{table}%
+
+
+\FloatBarrier
+
+We standardize all variables for the subsequent analysis (i.e., we mean center each and divide it by its standard deviation)  with two exceptions. By keeping \textit{payment term extensions} and \textit{initial payment terms} unscaled (only mean-centered), we can attain a more meaningful interpretation.
+
+
+
+\section{Hypotheses tests}\label{sec:dataAnalysis}
+Hypothesis~\ref{H:expand} suggests an extension of payment terms when RF is introduced. In Table~\ref{tab:variableSummary}, \textit{RF payment terms} are longer than \textit{initial payment terms}. A  $t$-test $\big(t=32.37,\,df=1,275,$ $p<0.001\big)$ and a non-parametric Wilcoxon test $\left(V=4186.5,\,p<0.001\right)$ provide significant support for Hypothesis~\ref{H:expand}. Accordingly, on average, buyers extend payment terms by 56.76 days; in relative terms, they double payment terms. But whether this doubling in aggregation corresponds to doubling payment terms for each dyad is the essence of Hypothesis~\ref{H:d0}. 
+
+
+Turning to Hypothesis~\ref{H:d0}, Table~\ref{tab:corr} provides the correlation matrix. The negative correlation between payment term extension and RF payment terms is suggestive of rejecting Hypothesis~\ref{H:d0}, though this is a very crude way of testing. A more reasonable approach for the panel data structure is a linear regression with fixed effects on the buyer level since each buyer transacts with multiple suppliers. This approach enables us to control for several potentially important variables. Since the fixed effects already capture all variables constant on the buyer level, the model does not contain any buyer-level time-invariant variables. The data set spans almost a decade with potentially changing approaches. To capture this, we include \textit{year} as a factor variable in our model. Payment terms can differ by \textit{supplier country} and \textit{supplier industry}, so we include both variables on the supplier level. If the conditions are quite favorable (i.e., small \textit{RF interest rate}), one might expect long payment term extensions, so we include this variable. Without RF, suppliers incur financing costs following their credit spread and the risk-free rate. With RF, their financing costs are RF interest rate plus risk-free rate. So, the risk-free rate affects both options and affects relative differences. We include the variable \textit{risk-free rate} in our model. Buyers might consider the variables \textit{annual spend} and \textit{supplier revenue} when extending payment terms. \textit{Payment terms} are more effective with high \textit{annual spend}. Facing larger suppliers, though, will likely shift the bargaining power. So, we include both variables. To account for accumulated experience and capture the asymmetry between buyers and suppliers, we include \textit{buyer experience}.  Specifically, we estimate
+\begin{dmath*}
+    \text{Payment term extensions}_{ij} = \beta_1\text{ Supplier country}_i + \beta_2\text{ Supplier industry}_i + \beta_3\text{ RF interest rate}_{ij} + \beta_4\text{ Risk free rate}_{ij} +  \beta_5\text{ Annual spend}_{ij} + \beta_6\text{ Supplier revenue}_i + \beta_7\text{ Buyer experience}_{ij} + \beta_8\text{ Prior payment terms} + \beta_9 \text{ Year}_{ij} + \text{BID}_j + \varepsilon_{ij}\,.
+\end{dmath*}
+
+\begin{table}[t]$\,$\vspace{4pt}\\
+\caption{Correlation Matrix. $N = 1,276$, \pDefSigCor.\vspace{12pt}}
+\label{tab:corr}
+{
+\scalebox{0.875}{
+\addtolength{\tabcolsep}{-5pt} % or it would be overfull
+\hspace{-8pt}\begin{tabular}{%
+%lc@{\hspace{.2em}}c*{9}{c@{\hspace{.2em}}c}
+lc*{12}{S[table-format=-1.2,table-space-text-post=***]c}cc}\hline\\[-9pt]
+&& {1.} && {2.} && {3.} && {4.} && {5.} && {6.} && {7.} && {8.}  \\[2pt]\hline
+1. Payment term extensions && && && && && && && && &&\\[2pt]
+2. Initial payment terms &&-0.46* && && && && && && && &&\\[2pt]
+3. RF payment terms &&0.87* &&0.03 && && && && && && &&\\[2pt]
+4. RF interest rate &&-0.36* &&0.36* &&-0.21* && && && && && &&\\[2pt]
+5. Risk-free rate &&0.12* &&0.19* &&0.23* &&0.04 && && && && &&\\[2pt]
+6. Annual spend &&0.19* &&-0.22* &&0.10* &&-0.54* &&-0.20* && && && &&\\[2pt]
+7. Supplier revenue &&0.16* &&-0.15* &&0.10* &&-0.32* &&-0.09* &&0.55* && && &&\\[2pt]
+8. Buyer revenue &&0.07* &&-0.11* &&0.01 &&-0.21* &&-0.02 &&0.12* &&0.10* && &&\\[2pt]
+9. Buyer experience &&-0.00 &&0.22* &&0.12* &&0.08* &&0.43* &&-0.21* &&-0.14* &&0.53* &&\\[2pt]\hline
+\end{tabular}%
+}%scalebox
+}
+\end{table}%{htb}
+
+
+Table~\ref{tab:main:models} provides in the first column a fixed-effect regression model with payment term extension as the dependent variable and various control variables. Model (2) of the same table adds the variable \textit{initial payment terms}. Adding this variable increases the $R^2$ value from 6.8\% to 24.8\%, which is significant $(p<0.001$) and substantial: the variable \textit{initial payment terms} explains about 18\% of the variance in our sample's payment term extensions. In line with the correlation matrix, though, the effect of \textit{initial payment terms} is negative instead of the hypothesized positive direction. With a coefficient of -0.88 ($p<0.001$), for each additional day in \textit{initial payment terms}, the extension is 0.88 days less. So, instead of using RF to extend already long payment terms, buyers extend shorter payment terms more. Further results are noteworthy in Model (2). Buyer experience has a positive coefficient in our sample, but one that is borderline insignificant $(t=1.85, p<0.1)$. In contrast, the variable \textit{RF interest rate} is negatively associated with payment term extensions. Suppliers with more attractive financing rates, seem to agree to more extensions. Both findings are plausible.
+
+
+
+\begin{table}[htb]
+\caption{Fixed-Effect regression on payment term extensions. Dependent variable = payment term extensions. N=1,276. Payment term extensions are not standardized. A year factor variable is include in the regression models but not displayed here for brevity; robust standard errors in parentheses,\pDefSig.}
+\label{tab:main:models}
+{
+\begin{center}
+\scalebox{0.8}{
+\begin{tabular}{%
+lcd{3.6}cd{3.6}%
+%l*{4}{cS[table-format=-3.3,table-space-text-post=***]}}
+}\hline\\[-9pt]
+&& \suc{(1)}&& \suc{(2)}&& \suc{(3)}\\\cline{3-3}\cline{5-5}\cline{7-7}
+\multicolumn{5}{l}{Supplier country (US = baseline)}\\
+\;Canada&&7.577&&7.756&&7.811\\
+&&(6.114)&&(11.257)&&(11.413)\\
+\;Denmark&&6.773&&8.453&&8.424\\
+&&(11.995)&&(13.733)&&(13.592)\\
+\;Germany&&26.551$^{***}$&&18.493$^{*}$&&18.454$^{*}$\\
+&&(4.056)&&(9.317)&&(9.235)\\
+\;Mexico&&-5.060&&6.333&&5.406\\
+&&(7.578)&&(10.078)&&(9.708)\\
+\;Other&&19.606$^{**}$&&23.470$^{*}$&&23.534$^{*}$\\
+&&(6.129)&&(11.517)&&(11.369)\\
+\;Switzerland&&2.088&&3.558&&3.710\\
+&&(23.290)&&(22.411)&&(22.436)\\
+\;United Kingdom&&-2.422&&-13.009&&-13.076\\
+&&(7.637)&&(11.255)&&(11.330)\\
+\multicolumn{5}{l}{Supplier industry (Industrial goods and services = baseline)}\\
+\;Administrative support&&19.726&&21.791$^{+}$&&22.500$^{+}$\\
+&&(13.243)&&(12.424)&&(12.613)\\
+\;Basic resources&&10.430$^{*}$&&9.636$^{+}$&&9.502$^{+}$\\
+&&(5.108)&&(5.639)&&(5.710)\\
+\;Chemicals&&18.697$^{**}$&&12.585$^{+}$&&12.691$^{+}$\\
+&&(6.473)&&(7.452)&&(7.501)\\
+\;Construction and materials&&-2.046&&-5.470&&-5.317\\
+&&(8.832)&&(5.974)&&(5.908)\\
+\;Health care&&5.926&&1.001&&0.596\\
+&&(3.666)&&(3.237)&&(3.142)\\
+\;Media&&-37.518$^{***}$&&-38.342$^{***}$&&-38.302$^{***}$\\
+&&(9.489)&&(9.188)&&(9.090)\\
+\;Not indicated&&-4.289&&-4.394&&-4.427\\
+&&(3.474)&&(2.879)&&(2.879)\\
+\;Oil and gas&&-7.795&&-4.334&&-4.487\\
+&&(6.622)&&(9.022)&&(9.057)\\
+\;Retail&&-20.423$^{+}$&&-12.552&&-12.069\\
+&&(12.148)&&(8.283)&&(8.453)\\
+\;Technology&&-11.052&&-12.231$^{*}$&&-12.224$^{*}$\\
+&&(6.958)&&(4.917)&&(4.856)\\
+RF interest rate&&-8.346$^{***}$&&-6.532$^{*}$&&-6.850$^{*}$\\
+&&(2.126)&&(2.544)&&(2.663)\\
+Risk free rate&&-12.026&&-6.597&&-6.474\\
+&&(12.627)&&(9.840)&&(9.982)\\
+Annual spend&&2.963&&3.819&&3.645\\
+&&(3.570)&&(2.583)&&(2.524)\\
+Supplier revenue&&0.622&&-0.367&&1.769\\
+&&(1.400)&&(1.349)&&(1.976)\\
+Buyer experience&&4.859&&7.662$^{+}$&&7.887$^{+}$\\
+&&(3.832)&&(4.151)&&(4.238)\\
+Prior payment terms&&&&-0.880$^{***}$&&-0.886$^{***}$\\
+&&&&(0.047)&&(0.045)\\
+Annual spend x Prior payment terms&&&&&&-0.039$^{*}$\\
+&&&&&&(0.018)\\
+Num.Obs.&&\suc{1276}&&\suc{1276}&&\suc{1276}\\
+$R^2$&&0.068&&0.248&&0.248\\\hline
+\end{tabular}%
+}%scalebox
+\end{center}
+}
+\end{table}%{htb} 
+
+\FloatBarrier
+The non-significance of Hypotheses~\ref{H:expand} leads to an ad-hoc question: Could it be that annual spend moderates the relationship between prior payment terms of payment terms extension? For instance, buying firms might follow the underlying theoretical motives better if annual spend is larger, that is, if more is at stake. To examine this effect, Model (3) introduces an interaction affect of annual spend and prior payment terms. Despite this added effect, the main effect of prior payment terms remains significantly negative on about the magnitude. The interaction effect appears to have a negative effect and thus instead seems to strengthens this negative relations. However, an $F$-test suggests that Model (3) does not provide better fit than Model (2) $(p>0.1)$, as the virtually identical $R^2$ suggests. Therefore, varying levels annual spend cannot explain the lack of support for Hypotheses 2.
+
+\section{Robustness tests}\label{sec:robust}
+Endogeneity might affect the fixed-effect regression results in various ways. We address those issues sequentially and report the results in Table~\ref{tab:robust}. Regarding our model findings, the largest concern is variables that can affect prior payment terms and payment term extensions. Several of those are not in our dataset. Those include the duration of the buyer-supplier relationship, the strategic importance, whether the buyer has alternative suppliers for the underlying product and whether the supplier has alternative customers, and buyer and supplier power more generally. Another important variable lacking in our dataset is the supplier's interest rate outside RF (i.e., its credit spread). To avoid the influence of those factors, we leverage an instrumental variable (IV) approach. For each supplier, we create a country average of prior payment terms. Consider Buyer $B$'s supplier $S$ in country $c_S$. Then we take all suppliers' average prior payment terms in our dataset except for supplier $S$ in country $c_S$. This average cannot be affected by relationship variables between the buyer $B$ and supplier $A$. Consider the example of dependency. Even if $B$ largely depends on $S$, this would not affect the payment terms of other suppliers in the same country. Likewise, the relationship length between $B$ and $S$ does not affect the payment terms for other suppliers in the dataset in $S$'s country. Therefore, based on plausible arguments, the variable \textit{country average payment terms} is exogenous. To argue for validity, we notice that payment terms differ by country in our dataset. We also ran a linear regression with dependent variable \textit{prior payment terms} and independent variable \textit{country average payment terms}.
+
+
+\begin{table}[htb]
+\caption{Robustness checks. Dependent variable = payment term extensions. A year factor variable is include in the regression models but not displayed here for brevity. Standard errors in parentheses, \pDefSig.}
+\label{tab:robust}
+{
+\scalebox{0.75}{
+\begin{tabular}{%
+l*{6}{cd{3.3}}%
+}\hline\\[-9pt]
+&& \muc{1.5cm}{(1)}&& \muc{1.5cm}{(2)}&& \muc{1.5cm}{(3)}&& \suc{(4)}&& \muc{1.5cm}{(5)}&& \muc{1.5cm}{(6)}\\
+&&\muc{1.5cm}{IV}&& \muc{1.5cm}{IV}&&  \suc{MLE}&& \suc{FE subset}&& \muc{1.5cm}{Heckman}&& \muc{1.5cm}{Heckman}\\
+&&\muc{1.5cm}{(step 1)}&& \muc{1.5cm}{(step 2)}&&  \suc{}&& \suc{}&& \muc{1.5cm}{(selection)}&& \muc{1.5cm}{(step 2)}\\
+\multicolumn{8}{l}{Supplier country (US = baseline)}\\
+\;Canada&&&&7.744&&11.514&&-21.215$^{***}$&&&&-18.195\\
+&&&&(11.567)&&(54.262)&&(5.871)&&&&(37.821)\\
+\;Denmark&&&&8.335&&7.826&&-10.452&&&&-11.668\\
+&&&&(10.089)&&(33.489)&&(17.196)&&&&(32.169)\\
+\;Germany&&&&19.057$^{*}$&&21.365&&15.932$^{+}$&&&&15.900\\
+&&&&(8.217)&&(23.669)&&(9.394)&&&&(17.670)\\
+\;Mexico&&&&5.537&&10.347&&-16.334&&&&-17.383\\
+&&&&(8.859)&&(19.112)&&(13.956)&&&&(27.253)\\
+\;Other&&&&23.200$^{*}$&&25.093&&20.045$^{+}$&&&&21.543\\
+&&&&(11.147)&&(23.630)&&(11.350)&&&&(18.615)\\
+\;Switzerland&&&&3.456&&9.228&&-25.911&&&&-32.003\\
+&&&&(13.805)&&(26.147)&&(25.143)&&&&(24.019)\\
+\;United Kingdom&&&&-12.269&&-8.990&&-19.751$^{+}$&&&&-20.791\\
+&&&&(10.836)&&(28.643)&&(11.193)&&&&(21.834)\\
+\multicolumn{8}{l}{Supplier industry (Industrial goods and services = baseline)}\\
+\;Administrative support&&&&21.646&&21.014&&32.004$^{+}$&&&&31.396$^{+}$\\
+&&&&(13.195)&&(13.032)&&(18.009)&&&&(17.172)\\
+\;Basic resources&&&&9.691$^{+}$&&10.522$^{+}$&&17.131$^{*}$&&&&14.636$^{*}$\\
+&&&&(5.004)&&(5.988)&&(7.599)&&&&(7.254)\\
+\;Chemicals&&&&13.013$^{*}$&&12.657&&18.509&&&&19.657\\
+&&&&(5.468)&&(15.607)&&(14.917)&&&&(13.613)\\
+\;Construction and materials&&&&-5.231&&-5.646&&-10.056&&&&-10.540\\
+&&&&(5.651)&&(13.326)&&(6.141)&&&&(10.207)\\
+\;Health care&&&&1.345&&-0.009&&-2.156&&&&-2.525\\
+&&&&(7.753)&&(30.264)&&(5.856)&&&&(21.116)\\
+\;Media&&&&-38.285$^{***}$&&-37.619$^{***}$&&-48.586$^{***}$&&&&-48.082$^{***}$\\
+&&&&(6.719)&&(8.486)&&(6.712)&&&&(8.646)\\
+\;Not indicated&&&&-4.386&&-3.370&&-7.395$^{***}$&&&&-6.244\\
+&&&&(4.652)&&(3.936)&&(2.076)&&&&(5.002)\\
+\;Oil and gas&&&&-4.576&&-4.912&&-16.613&&&&-14.982\\
+&&&&(7.760)&&(10.321)&&(19.540)&&&&(15.721)\\
+\;Retail&&&&-13.103$^{+}$&&-13.620&&-2.350&&&&-0.641\\
+&&&&(7.551)&&(22.853)&&(5.335)&&&&(15.623)\\
+\;Technology&&&&-12.149$^{*}$&&-12.516$^{+}$&&-11.261$^{*}$&&&&-10.611\\
+&&&&(5.270)&&(7.219)&&(5.277)&&&&(7.168)\\
+RF interest rate&&&&-6.659$^{***}$&&-6.303&&-8.444$^{+}$&&-0.226$^{*}$&&-7.473\\
+&&&&(1.622)&&(4.114)&&(4.419)&&(0.114)&&(4.954)\\
+Risk free rate&&&&-6.976&&-8.689&&-7.438&&&&-5.466\\
+&&&&(9.138)&&(9.039)&&(12.255)&&&&(10.919)\\
+Annual spend&&&&3.759$^{+}$&&3.817$^{+}$&&5.974$^{+}$&&0.086&&6.047$^{+}$\\
+&&&&(1.979)&&(1.980)&&(3.117)&&(0.076)&&(3.327)\\
+Supplier revenue&&&&-0.298&&-0.093&&0.238&&0.032&&0.318\\
+&&&&(1.639)&&(1.776)&&(1.973)&&(0.078)&&(2.042)\\
+Buyer experience&&&&7.466$^{*}$&&7.388&&8.687$^{**}$&&&&8.358$^{*}$\\
+&&&&(3.762)&&(4.783)&&(3.082)&&&&(4.224)\\
+Prior payment terms&&&&-0.819$^{***}$&&-0.783$^{***}$&&-0.937$^{***}$&&-0.101&&-0.907$^{***}$\\
+&&&&(0.085)&&(0.086)&&(0.061)&&(0.071)&&(0.087)\\
+Estimated supplier interest rate&&&&&&4.336$^{*}$&&&&&&\\
+&&&&&&(2.206)&&&&&&\\
+(Intercept)&&1.494&&&&&&&&&&\\
+&&(3.443)&&&&&&&&&&\\
+Country average payment terms&&0.972$^{***}$&&&&&&&&&&\\
+&&(0.064)&&&&&&&&&&\\\hline
+Num.Obs.&&\suc{1276}&&\suc{1276}&&\suc{1276}&&\suc{1007}&&\suc{1007}&&\suc{1007}\\
+%AIC&&&&&&&&&&483.4&&\\
+%Model&&Linear&&Instrumental variable&&Structural&&Fixed effects, subset&&Probit, select&&Heckman selection, main\\
+$R^2$ &&0.153&&0.247&&&&0.265&&&&0.210\\
+weak instrument&&&&0.000&&&&&&&&\\
+Wu-Hausman&&&&0.504&&&&&&&&\\\hline
+%Sargan &&0.000&&&&&&&&&&\\\hline
+\end{tabular}%
+}%scalebox
+}
+\end{table}
+
+
+%\subsection{Counterfactual analysis}\label{sec:robust}
+\FloatBarrier
+
+Column (1) of Table~\ref{tab:robust} reports those results. There is a significant, positive relationship between both variables ($p<0.001$) and \textit{country average payment terms} explains about 15.3\% of the variance of \textit{prior payment terms}. We conclude that the instrument is valid. In column (2), we report the instrumental variable results. Using our instrument, we find a consistently negative effect of \textit{prior payment terms} on \textit{payment terms extension}. Therefore, we conclude that individual, relationship, and power-based variables cannot explain the lack of support for Hypothesis~\ref{H:expand}. 
+
+In addition, we analyzed a structural model that allows us to recover the unobserved supplier's credit spread. Appendix~A summarizes the details and specific assumptions. Our approach starts by formulating a game-theoretical model that predicts equilibrium \textit{initial payment terms} (an observed variable in our data set) by several variables, including \textit{supplier credit spread} (an unobserved variable in our data set). We then follow the maximum-likelihood paradigm to identify the most likely parameters in our structural model that would lead to the observed initial payment terms. With those estimates, we predict the credit spread for each supplier. Despite mathematical rigor, we should see this estimate as a proxy. Thus, we build on the work of \citet{murphy2002estimation} and estimate a two-step model that accounts for measurement errors of the variable \textit{estimated supplier credit spread}. Model (2) of Table~\ref{tab:robust} presents the second-step estimates with Murphy-Topel standard errors. Adding this variable does not substantially affect any other results: \textit{initial payment terms} negatively affects payment term extensions. In addition, the new variable has a positive coefficient ($p<0.05$), suggesting that suppliers with a more extensive credit spread, who thus benefit more from adopting RF, agree to larger payment term extensions. An expected result that further strengthens the plausibility of our analysis and data set.
+
+
+
+\FloatBarrier
+Finally, a selection bias might be driving some results. Based on several discussions with the RF provider and firm managers who use the RF provider's platform, we learned that most suppliers eventually implement RF. However, there are $N=66$ cases where suppliers eventually refused the adoption. Since this number is comparably small, we consider the corresponding Heckman selection model rather exploratory. Not all buyers face non-adopters. Therefore, BID, our panel variable, can perfectly predict adoption in some cases, which is problematic for probit models. So, we restrict our subsequent analysis to a reduced sample of 1,007 buyer-supplier dyads such that each buyer faced at least one supplier that declined the offer to use RF. Model~(4) in Table~\ref{tab:robust} replicates the fixed-effect model estimation reported in Model~(2) in Table~\ref{tab:main:models}. This model shows that the same effects continue to hold by taking the slightly smaller sample. Model (5) in Table~\ref{tab:robust} shows the probit model as step-1 of the Heckman-selection model. It reports marginal coefficients; the negative coefficient of \textit{RF interest rate} ($p<0.05$) suggests that suppliers facing higher \textit{RF interest rates} are less likely to adopt RF. This result is in line with our intuition supporting the plausibility of the data set. Model~(6) of the same table presents the step-2 estimation results. Again, \textit{initial payment terms} continue to impact \textit{payment term extensions} negatively. Only the significance of \textit{RF interest rate} seems to drop once accounted for its impact on RF adoption. In this model, \textit{buyer experience} positively affects \textit{payment term extensions} ($p<0.05$).
+
+To summarize, the comprehensive endogeneity checks further support the idea that longer \textit{initial payment terms} are associated with fewer payment term extensions, as opposed to our theoretical prediction. Even though buyers do not follow theoretical predictions in terms of how \textit{initial payment terms} translate into extensions, managers seem to act pretty rationally as the length of the extensions is positively related to their experience, to a suppliers' outside option (i.e., credit spread), and negatively to the RF interest rate (though these effects seem less robust and do not consistently show across all models). We conclude that managers act rationally and with the intent to extend payment terms in our setting and that the contradiction to theoretical cannot be easily explained by suboptimal or irrational decision making.
+
+
+\section{Discussion and conclusion}
+Our focus is on testing two key hypotheses. The results carry important implications for academia and industry. In line with analytical studies, our results show that buyers use RF for payment term extensions, which tend to be substantial. Extending payment terms from an initial value of about 54.2 days to 110.9 days means more than doubling the payment terms. To understand the economic impact, consider an average buyer in our sample, for which the cost of goods sold is \$12.87 bn. If this firm could extend its payment terms with all of its suppliers by 56.8 days, it would release $56.8/365\times \$12.87\text{bn} \approx \$2\text{bn}$ in cash. At the same time, suppliers get paid almost immediately, which means their accounts receivables diminish substantially. An average supplier in our data set has accounts receivables stemming from the RF-offering buyer of $54.2/365\times \$2\text{mn}\approx \$300,000$, an average amount that \textit{each} supplier could invest more productively. In short, adopting RF has a significant impact on improving cash flows.
+
+However, not all payment terms are extended to the same extent. Among all predictors for payment term extensions in the context of RF adoption, initial payment terms are the most interesting ones. They epitomize the status-quo of buyer-supplier relationships, the starting point. They are a genuinely dyadic concept with an underlying zero-sum game: for one firm to gain by changing terms is for the other firm to lose. By adopting RF, buying firms seek to expand those initial terms without substantial drawbacks for suppliers. In this context, the question naturally arises about how buying firms should expand payment terms.
+
+Extant analytical models \citep{Hu2018,Kouvelis2020,Lekkakos2016,Tanrisever2012,vanderVliet2015,Wuttke2016} are all consistently related to that point. If payment terms are already long, suppliers gain the most by adopting RF, and Stackelberg-leading buyers should exploit this by expanding payment terms more. Following this logic, those models advise managers that little extensions are possible if payment terms are initially short. If they are long, RF is likely more valuable. Further, those analytical models suggest that the heterogeneity among suppliers will increase through RF. Empirically, we demonstrate the opposite effect: a convergence or harmonization of payment terms. Accordingly, buying firms do not adopt RF to maximize their accounts payable but rather create more balance among their supplier base. To examine this effect further, we consider the coefficient of variation of payment terms as a measure for harmonization. A $t$-test and a Wilcoxon test on the buyer level indicate a significant increase in harmonization ($p<0.01$ and $p<0.01$). Further, we note that in the majority of cases (23 out of 27), the coefficient of variation decreases due to the adoption of RF, a proportion that is significantly non-random ($p<0.001$).
+
+So, the majority of buyers ($N=23$) seek to harmonize terms (contradicting the theoretical prediction), whereas others ($N=4$) follow the theory. The statistically small number of buying firms in our data set prevents us from rigorous hypotheses testing on drivers of their behavior. As an exploratory approach, we ran a linear regression with the dependent variable \textit{ratio of the coefficient of variation of RF payment terms to the coefficient of variation of initial payment terms}; the smaller the value, the more a buyer harmonizes its payment terms. Our estimation suggests that buyers with larger credit spread (i.e., worse financing conditions offered in RF programs) tend to harmonize stronger. Put differently, firms with better financial standing tend to follow theory closer. We consider this ad-hoc observation a conjecture requiring further testing on a broader base of buying firms.
+
+The contradiction between precise and intuitive analytical predictions on optimal strategies and actual outcomes examined in our study implies several research opportunities. How can harmonization be explained? How can its value or utility be modeled? Whereas extant analytical research examines isolated buyer-supplier dyads, the study of payment term harmonization likely requires a network perspective. Thus, it appears to be related to a more fundamental phenomenon witnessed in former supply chain studies \citep[e.g.,][]{Wu2005, wu2010, Wilhelm2011}. Those studies suggest that buying firms also care about the competition and comparison among their suppliers. Like \citet{Wilhelm2011}, we argue that understanding the management of supplier-supplier relationships might be ``a missing link'' (p. 663) to explain the critical phenomenon in our study. Suppose buying firms care about competition among their suppliers. In that case, they would likely strive to make all suppliers equal and remove differentiation. Further empirical research could examine the impact of harmonized payment terms on competition and whether firms (even without RF) that maintain rather harmonized payment terms obtain better conditions (e.g., lower prices). Analytical research could also attempt to model the value of harmonization and find a formal explanation for the observed pattern. For instance, a game theoretical model could consider a buyer-supplier-supplier triad instead of a buyer-supplier dyad.
+
+Not only competition may explain harmonization. For example, the investigation of fairness concerns in supply chains \citep{Cui2012, Cui2007} typically departs from the well-established premise that a desire to avoid inequity sometimes guides managerial decision making \citep{Fehr1999}. If  buying firm managers deem longer payment terms with some suppliers unfair \citep{Schleper2017}, they might develop a desire to reduce unfairness. Further research thus might examine whether inequity aversion may lead to results that are consistent with our findings. A field experiment or survey could examine whether fairness concerns are vital in the context of harmonization. 
+
+Our empirical analysis provides additional results. There tends to be a negative association between the RF interest rate and the extension of payment terms. Suppliers facing higher costs under RF are more likely to face shorter extensions, as one would expect. A Heckman-selection model (though exploratory in our context) further suggests that high RF interest rates may deter some suppliers from adopting RF in the first place. After estimating the unobserved supplier credit spread, our results indicate that suppliers with a higher credit spread tend to be confronted with longer payment term extensions. Again, this is plausible since those firms would benefit more. Finally, though not in all models, buyer experience seems to help buyers bargain for longer payment term extensions. In sum, those additional tests all indicate that buyers and suppliers in our data set seem to act quite rationally and follow economic intuition and prediction, increasing our data set's validity. Given those decisions, we conclude that buying firm managers in our sample purposefully harmonize payment terms.
+
+Turning to managerial implications, ultimately, we cannot say whether harmonization, as witnessed in our data set, is optimal. However, it seems that buying firm managers, who ignore this facet, are ill-advised when crafting an RF and payment terms strategy. They are likely miscalculating their expected benefits. At the same time, managers who only focus on harmonization might be underperforming as they are deviating from profit-maximizing behavior. A careful assessment based on the buyer's supply chain strategy can help. Our study also has implications for RF providers who often consult with (potential) clients before starting an RF program. Our results should be reflected in their work, and they should carefully differentiate between the potential impact on days payables outstanding (which is one of their top-sales arguments) and supply chain impact (which requires a deeper understanding of harmonization). 
+
+Finally, as with all econometric studies, ours has some limitations. While we carefully address a series of potential endogeneity issues, it is always difficult to establish causality with secondary data; controlled field experiments could shed more light on the causal effects. Nevertheless, our study represents the first foray into challenging analytical predictions and assumptions related to extending payment terms in an RF context. We believe that differences between extant analytical work and industry practice are significant enough to warrant further analytical work and empirical investigations of this critical area.
+
+
+\setlength{\bibsep}{0pt plus 0.3ex}
+\bibliographystyle{agsm} % outcomment this and next line in Case 1
+\bibliography{literature} % if more than one, comma separated
+
+
+\begin{appendices}
+\onehalfspacing
+\section{Supplier Credit Spread Estimation}\label{app:creditSpread}
+The supplier's credit spread, or related measures such as credit rating, are not observed in the data set of this study. This extension seeks to recover this unobserved variable by creating a proxy through a maximum-likelihood estimation. We follow the approach by \citep{murphy2002estimation} and specifically implement Theorem 14.8 of \citet{Greene2020}. This appendix derives an MLE estimator for the supplier's credit spread (step 1). We use the point estimate and the estimated variance-covariance matrix to adjust a fixed-effect panel regression (step 2). Specifically, in step 1,  we assume that initial payment terms are an outcome of Nash-bargaining and ask, given the status quo of initial payment terms, what is the most likely credit spread of each supplier that would have led to those initial payment terms? Of course, there is no guarantee that such an estimate is identical to the true value. Therefore, we only use it as a check to examine whether the main results remain robust.
+
+\subsection{Bilateral bargaining model}
+Consider buyer $\mathcal B$ and supplier $\mathcal S$ that do not yet use RF and bargain over payment terms, $d^0$. This assumption is consistent with empirical studies that examine how firms agree on payment terms \citep{Fabbri2016, Summers2002}. As in many supply chain management studies \citep{Bhaskaran2009, Plambeck2005, vanMieghem1999}, the Nash bargaining solution has several desirable properties, such as Pareto optimality, individual rationality, and independence of irrelevant alternatives \citep{Owen2013}. Thus, we consider generalized Nash bargaining. 
+
+Let the supplier sell quantity $q$ of a product at exogenous wholesale price $w$ to the buyer, which sells this product at a price $p$, adding value to the buyer equal to $(p-w)q$. The buyer can borrow money at the (short-term debt) interest rate $i^{\bx}$, which equals the sum of the buyer's credit spread, $i^{\bx,0}$, and the risk-free rate, $r$. Being able to pay the supplier the outstanding amount $wq$ after payment terms $d^0$ reduces the buyer's costs by $d^0i^{\bx}wq$. In short, the buyer's profit function is $\pi^{\bx}\left(d^0\right)=(p-w)q+d^0i^{\bx}qw$.
+
+The supplier incurs the cost of $c$ per unit so that selling quantity $q$ adds a value of $(w-c)q$ to the supplier. To finance the gap that arises because the supplier has to wait $d^0$ days before receiving its revenue, $wq$, the supplier can borrow money at the (short-term debt) interest rate $i^{\sx}$. Similar to the buyer, this interest rate comprises the supplier's credit spread, $i^{\sx,0}$, and the same risk-free rate $r$. 
+
+In our model, both parties have the viable option to decline an agreement, in which case both parties earn no profit. Let $\alpha\in\left[0,1\right]$ capture bargaining power. If $\alpha=1$, the buyer has full power resembling a Stackelberg leader. If $\alpha=0$, the buyer has no power, resembling a Stackelberg follower, and if $\alpha=0.5$, both parties have equal power. Using the generalized Nash bargaining framework, both parties agree on
+
+\begin{equation}
+d^{0^*} \in \argmax_{d^0}\left\{\left(\pi^{\bx}\left(d^{0}\right)\right)^\alpha\left(\pi^{\sx}\left(d^{0}\right)\right)^{\left(1-\alpha\right)}\right\}.
+\end{equation}
+
+We refer to the terms $\frac{p-w}{p}$ and $\frac{w-c}{w}$ as buyer margin $m^{\bx}$ and supplier margin $m^{\sx}$, respectively. 
+
+\begin{proposition}\label{prop:d0}
+The Nash bargaining solution of stage 1 is given by
+\begin{equation}
+d^{0^*} = \DNULL.
+\end{equation}
+\end{proposition}\noindent%
+
+In line with our empirical strategy, we seek to estimate the unobservable quantity $i^{\sx}$ for which the following result is helpful,
+\begin{corollary}\label{cor:is} Under the Nash bargaining solution in the first stage,
+\begin{equation}
+i^{\sx} = \frac{\alpha m^{\sx}i^{\bx}}{\left(1-\alpha\right)\MBX+i^{\bx}d^{0^*}}.
+\end{equation}
+\end{corollary}\noindent%
+Following directly from Proposition~\ref{prop:d0}, this result enables us to derive the maximum likelihood estimator.
+\subsection{Maximum Likelihood Estimator}
+
+The supplier's interest rate $i^\sx$, its margin $m^{\sx}$, and bargaining power $\alpha$, are unobserved in our data set. The objective of this section is to derive a maximum likelihood estimator (MLE) based on Corollary~\ref{cor:is} to estimate $m^{\sx}$, $\alpha$, and ultimately $i^\sx$. We provide a general MLE for this problem.
+
+For the remainder of this appendix, subscript $i$ refers to supplier $i\in I =: \left\{1,\dots,N\right\}$, where $N$ is the sample size. We seek to estimate two sets of parameters that relate to bargaining power and supplier margin, respectively, and to which we refer with superscripts $\alpha$ and $m$, respectively. Let $\theta^\alpha$ be a set of $q^\alpha$ parameters, and let $\theta^m$ be a set of $q^m$ parameters. For supplier $i$, we use vector $x_i^\alpha$ to denote $q^\alpha$ variables, and we use vector $x_i^m$ to denote $q^m$ variables. By definition, $\alpha\in[0,1]$. To ensure it, we consider an increasing and differentiable map $\varphi : \mathbb R\rightarrow\left[0,1\right]$ and estimate $\alpha$ through $\varphi\left(\langle \theta^\alpha,x^\alpha_i\rangle\right)$, where $\langle \cdot,\cdot\rangle$ denotes a scalar product. A positive coefficient $\theta^\alpha_j$ states that an increase in the $j$-th variable is associated with more bargaining power. We estimate the quantities $m^{\sx}_i$ through the linear estimator $\langle \theta^m,x^m_i\rangle$. A positive coefficient $\theta^m_j$ states that an increase in the $j$-th variable is associated with a larger margin.
+
+Gamma distributions are frequently used to model strictly positive random variables \citep{Eliason1993} because they provide sufficient modeling flexibility \citep{Millar2011}. Likewise, we assume $\IS$ to be drawn from a gamma distribution with parameters $\mm$ and $\vv$, where $\mm$ relates to the expected value, and $\vv$ governs the shape. Let $f_\gamma\left(y | \mm,\vv\right)=\frac{1}{\Gamma(\vv)}\left(\frac{\vv}{\mm}\right)^\vv y^{(\vv-1)}\exp\left(-\frac{\vv y}{\mm}\right)$ denote the probability density function of the gamma distribution, in which case the log-likelihood for $\theta:=\left(\theta^\alpha,\theta^m\right)$, $\lambda\left(\theta\right)$, is given by
+\begin{equation}
+\lambda\left(\theta\right) = \log\left(\prod_{i\in I} f_\gamma\left(\frac{\varphi\left(\langle \theta^\alpha,x^\alpha_i\rangle\right)i^\bx_i}{\left(1-\varphi\left(\langle \theta^\alpha,x^\alpha_i\rangle\right)\right)\frac{m^\bx_i}{1-m^\bx_i}+d_i^0i_i^\bx}\langle \theta^m,x^m_i\rangle \Bigg| \mm,\vv\right)\right),
+\end{equation}
+and the MLE is defined by $\theta^{\text{MLE}} \in \argmax_{\theta}\left\{\lambda\left(\theta\right)|\theta\in\mathbb R^{q^\alpha+q^m}\right\}$. Similar to \citet{Tunca2017}, we begin the estimation with a calibration of observable parameters, which relates to both distribution parameters $\mm$ and $\vv$. From our interviews with the RF provider, we learned that the average interest rate of suppliers exceeds the average interest rate of buyers by 2 percentage points. This relationship only holds in aggregation (i.e., to determine $\mm$) and does not allow any inferences about specific buyer-supplier dyads (i.e., $i^\sx_i-i^\bx_i\not\equiv 0.02$). Otherwise, there are no substantial differences between buyer and supplier interest rates, which is why we assume the shape of the suppliers' interest rate distribution, $\vv$, to be the same as the one we observe for the buyer's interest rates. Estimations are carried out in MATLAB R2021a leading to point estimates and an estimate for the gradient of the log-likelihood function, which is required to calculate the variance-covariance matrix. Both, point estimates and the variance-covariance matrix are then considered in a linear model that we estimate through maximum likelihood, where \textit{payment terms extension} is the dependent variable, the same independent variables as in Model 2 of Table~\ref{tab:main:models} are included, and a dummy for buyer ID. Estimates are reported in Table~\ref{tab:robust} Model (2).
+
+\FloatBarrier
+\section{Proofs}
+\begin{proof}
+Proof of Proposition~\ref{prop:d0}. Let
+\begin{equation}
+\begin{split}\nonumber
+\Pi\left(d^0\right) := & \left(\pi^{\bx}\left(d^0\right)\right)^\BA\left(\pi^{\sx}\left(d^0\right)\right)^\SA =\left((p-w)q+d^0i^{\bx}qw \right)^\BA\left((w-c)q-d^0i^{\sx}qc\right)^\SA \\
+		    = & qw\left(\frac{p-w}{w}+d^0i^{\bx} \right)^\BA\left(\frac{w-c}{w}-d^0i^{\sx} \right)^\SA = qw\left(\MBX+d^0i^{\bx}\right)\left(m^{\sx}-d^0i^{\sx}\right)^\SA.\\
+\frac{\partial \Pi\left(d^0\right)}{\partial d^0} = & wc\left(\alpha i^\bx\frac{m^\sx-d^0i^\sx}{\MBX+d^0i^\bx}-i^\sx\left(1-\alpha\right)\right)\left(\frac{\MBX+d^0i^\bx}{m^\sx-d^0 i^\sx}\right)^\alpha
+\end{split}
+\end{equation}
+Solving  $\frac{\partial \Pi\left(d^{0^*}\right)}{\partial d^0} =0$ yields $d^{0^*} = \DNULL$. Calculating $\frac{\partial^2 \Pi\left(d^0\right)}{\partial {d^0}^2}$ and plugging in $d^{0^*}$ yields a negative term proving optimality.
+\end{proof}
+
+\begin{proof}{Proof of Corollary~\ref{cor:is}.} This corollary follows immediately by rearranging the terms in Proposition~\ref{prop:d0}.
+\end{proof}
+
+
+
+\end{appendices}
+
+
+
+%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%
+
